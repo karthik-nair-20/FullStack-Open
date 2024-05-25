@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+
+the page does not reload, when a new note need to be added, the logic in spa.js file is executed and a call goes to the below route
+
+https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: performs the js file
+    [the page gets loaded as per the logic in the js file]
+    deactivate server
+
+browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    server-->>browser: performs the js file, and execute the logic when the route conditon for new_notes_spa post request is met.
+    deactivate serve
+
+the call is performed and the html gets updated.

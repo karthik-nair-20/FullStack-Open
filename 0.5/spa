@@ -1,0 +1,27 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+here instead of using calling the server from html, we are using spa, which is calling the server in js.
+
+the calls will go from js to server and the end result will be in shown in the web page as a single html.
+
+the concept of spa is to only render one html instead of traditional way of calling server.
+
+Whenever an call goes the content gets added in the html,progressively based on the logic.
+
+browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    activate server
+    server-->>browser: performs the js file
+    [the page gets loaded as per the logic in the js file]
+    deactivate server
+
+browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate server
